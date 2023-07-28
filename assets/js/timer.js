@@ -4,7 +4,7 @@ var timeEl = document.querySelector(".time");
 
 var secondsLeft = 60;
 
-export function setTime() {
+ function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
     secondsLeft--;
@@ -21,7 +21,7 @@ export function setTime() {
 }
 
 // Function to create and append colorsplosion image
-export function sendMessage() {
+ function sendMessage() {
   timeEl.textContent = " ";
 }
 

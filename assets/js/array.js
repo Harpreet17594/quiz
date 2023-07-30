@@ -22,6 +22,7 @@ var count_score = 0;
 
 var timeEl = document.querySelector(".time");
 var secondsLeft = 60;
+var timerInterval;
 
 heading.style.visibility = "hidden";
 option1.style.visibility = "hidden";
@@ -120,6 +121,8 @@ function option1Click() {
       count_score += 1;
       getData(counter);
     } else {
+      //deduct 10 seconds from timer current value
+      // timerInterval = timerInterval - 100;
       counter += 1;
       getData(counter);
     }
@@ -135,6 +138,10 @@ function option1Click() {
     scoreScreen.style.display = "none";
     //set final score
     finalScore.textContent = count_score;
+
+    //timer function
+    clearInterval(timerInterval);
+    timeEl.textContent = " ";
     return;
   }
 }
@@ -146,6 +153,7 @@ function option2Click() {
       count_score += 1;
       getData(counter);
     } else {
+      // timerInterval = timerInterval - 10;
       counter += 1;
       getData(counter);
     }
@@ -161,6 +169,11 @@ function option2Click() {
     scoreScreen.style.display = "none";
     //set final score
     finalScore.textContent = count_score;
+
+    //timer function
+    window.clearInterval(timerInterval);
+    timeEl.textContent = " ";
+
     return;
   }
 }
@@ -173,6 +186,7 @@ function option3Click() {
       count_score += 1;
       getData(counter);
     } else {
+      // timerInterval = timerInterval - 10;
       counter += 1;
       getData(counter);
     }
@@ -189,6 +203,10 @@ function option3Click() {
 
     //set final score
     finalScore.textContent = count_score;
+
+    //timer function
+    window.clearInterval(timerInterval);
+    timeEl.textContent = " ";
     return;
   }
 }
@@ -201,6 +219,7 @@ function option4Click() {
       count_score += 1;
       getData(counter);
     } else {
+      // timerInterval = timerInterval - 10;
       counter += 1;
       getData(counter);
     }
@@ -216,46 +235,26 @@ function option4Click() {
     scoreScreen.style.display = "none";
     //set final score
     finalScore.textContent = count_score;
+
+    //timer function
+    window.clearInterval(timerInterval);
+    // clearInterval(myVar)
+    timeEl.textContent = " ";
     return;
   }
 }
 
-// function setCount() {
-//   if (counter < myQuestions.length) {
-//     console.log("type of change :" + typeof change);
-//     console.log("type of answer :" + typeof answer);
-//     console.log("counter :" + counter);
-//     console.log("count score :" + count_score);
-
-//     counter = counter + 1;
-//     show.textContent = answer + " is the correct answer";
-
-//     getData(counter);
-//   } else {
-//     heading.style.display = "none";
-//     option1.style.display = "none";
-//     option2.style.display = "none";
-//     option3.style.display = "none";
-//     option4.style.display = "none";
-//     show.style.display = "none";
-//     start.style.display = "none";
-//     endScreen.style.visibility = "visible";
-//     //set final score
-//     finalScore.textContent = count_score;
-//     return;
-//   }
-// }
-
 //timer function
 function setTime() {
   // Sets interval in variable
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left.";
 
     if (secondsLeft === 0) {
       // Stops execution of action at set interval
-      clearInterval(timerInterval);
+      window.clearInterval(timerInterval);
+      // timeEl.textContent = " ";
       // Calls function to create and append image
       sendMessage();
     }
@@ -287,6 +286,7 @@ submitInitials.addEventListener("click", function () {
 
 scores.addEventListener("click", function () {
   var valueOfInitials = document.getElementById("initials").value;
+  // var timecount = timeEl.value;
 
   // var para = new URLSearchParams();
   // para.append("initialValue", valueOfInitials);
@@ -297,6 +297,7 @@ scores.addEventListener("click", function () {
   // (B) SAVE TO SESSION STORAGE
   sessionStorage.setItem("initialvalue", valueOfInitials);
   sessionStorage.setItem("countscore", count_score);
+  sessionStorage.setItem("timecount", timerInterval);
 
   // (C) REDIRECT
   location.href = "highscores.html";

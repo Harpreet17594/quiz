@@ -11,10 +11,12 @@ var clear = document.getElementById("clear");
 // highscores.textContent = pass + " -----> " + pass;
 // (A) GET FROM SESSION STORAGE
 var first = sessionStorage.getItem("initialvalue"),
-  second = JSON.parse(sessionStorage.getItem("countscore"));
+  second = JSON.parse(sessionStorage.getItem("countscore")),
+  third = sessionStorage.getItem("timecount");
 
 // (B) IT WORKS!
-highscores.textContent = first + " your score is " + second;
+highscores.textContent =
+  first + " you scored " + second + " in " + third + " seconds";
 
 console.log(first);
 console.log(second);

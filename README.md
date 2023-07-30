@@ -8,6 +8,12 @@ To help you become familiar with these tests and give you a chance to apply the 
 
 ## Links
 
+deployed application link
+https://harpreet17594.github.io/quiz/
+
+github repository link
+https://github.com/Harpreet17594/quiz
+
 ## User Story
 
 ```

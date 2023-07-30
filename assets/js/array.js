@@ -9,6 +9,11 @@ var show = document.getElementById("show");
 var endScreen = document.getElementById("end-screen");
 var start = document.getElementById("start");
 var finalScore = document.getElementById("final-score");
+var initials = document.getElementById("initials");
+var submitInitials = document.getElementById("submitInitials");
+var highscores = document.getElementById("highscores");
+var scoreScreen = document.getElementById("scoreScreen");
+var scores = document.getElementById("scores");
 
 var counter = 0;
 var answer;
@@ -25,6 +30,7 @@ option3.style.visibility = "hidden";
 option4.style.visibility = "hidden";
 show.style.visibility = "hidden";
 endScreen.style.visibility = "hidden";
+scoreScreen.style.display = "none";
 // start_quiz.style.visibility = "hidden";
 
 var myQuestions = [
@@ -89,6 +95,7 @@ function getData(counter) {
   show.style.visibility = "visible";
   //   start_quiz.style.visibility = "hidden";
   start.style.visibility = "hidden";
+  scoreScreen.style.display = "none";
 
   answer = myQuestions[counter].correctAnswer;
   //   show.textContent = "";
@@ -125,6 +132,7 @@ function option1Click() {
     show.style.display = "none";
     start.style.display = "none";
     endScreen.style.visibility = "visible";
+    scoreScreen.style.display = "none";
     //set final score
     finalScore.textContent = count_score;
     return;
@@ -150,6 +158,7 @@ function option2Click() {
     show.style.display = "none";
     start.style.display = "none";
     endScreen.style.visibility = "visible";
+    scoreScreen.style.display = "none";
     //set final score
     finalScore.textContent = count_score;
     return;
@@ -176,6 +185,8 @@ function option3Click() {
     show.style.display = "none";
     start.style.display = "none";
     endScreen.style.visibility = "visible";
+    scoreScreen.style.display = "none";
+
     //set final score
     finalScore.textContent = count_score;
     return;
@@ -202,6 +213,7 @@ function option4Click() {
     show.style.display = "none";
     start.style.display = "none";
     endScreen.style.visibility = "visible";
+    scoreScreen.style.display = "none";
     //set final score
     finalScore.textContent = count_score;
     return;
@@ -258,4 +270,34 @@ function sendMessage() {
 start.addEventListener("click", (event) => {
   getData(counter);
   setTime();
+});
+
+submitInitials.addEventListener("click", function () {
+  var valueOfInitials = document.getElementById("initials").value;
+  endScreen.style.display = "none";
+  scoreScreen.style.visibility = "visible";
+
+  // highscores.style.visibility = "visible";
+  highscores.textContent = "";
+
+  //alert("hii");
+  // highscores.textContent = valueOfInitials + " -----> " + count_score;
+  // window.open("highscores.html");
+});
+
+scores.addEventListener("click", function () {
+  var valueOfInitials = document.getElementById("initials").value;
+
+  // var para = new URLSearchParams();
+  // para.append("initialValue", valueOfInitials);
+  // location.href = "highscores.html" + para.toString();
+
+  // (A) VARIABLES TO PASS
+
+  // (B) SAVE TO SESSION STORAGE
+  sessionStorage.setItem("initialvalue", valueOfInitials);
+  sessionStorage.setItem("countscore", count_score);
+
+  // (C) REDIRECT
+  location.href = "highscores.html";
 });
